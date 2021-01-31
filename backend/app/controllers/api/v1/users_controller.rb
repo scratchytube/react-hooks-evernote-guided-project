@@ -6,6 +6,10 @@ class Api::V1::UsersController < ApplicationController
     render json: users, status: 200
   end
 
+  def show
+    render json: @user, status: 200
+  end
+
   def create
     user = User.create(user_params)
     render json: user, status: 201
@@ -20,10 +24,6 @@ class Api::V1::UsersController < ApplicationController
     userId = @user.id
     @user.destroy
     render json: {message:"Zap! user deleted", userId:userId}
-  end
-
-  def show
-    render json: @user, status: 200
   end
 
   private

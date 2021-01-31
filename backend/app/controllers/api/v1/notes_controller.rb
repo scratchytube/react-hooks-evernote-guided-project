@@ -6,6 +6,10 @@ class Api::V1::NotesController < ApplicationController
     render json: notes, status: 200
   end
 
+  def show
+    render json: @note, status: 200
+  end
+
   def create
     note = Note.create(note_params)
     render json: note, status: 201
@@ -20,10 +24,6 @@ class Api::V1::NotesController < ApplicationController
     noteId = @note.id
     @note.destroy
     render json: {message:"Zap! Note deleted", noteId:noteId}
-  end
-
-  def show
-    render json: @note, status: 200
   end
 
   private
